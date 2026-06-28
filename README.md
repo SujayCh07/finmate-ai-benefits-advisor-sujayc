@@ -1,76 +1,134 @@
-# LifeLens Next.js App
+# FinMate
 
-LifeLens is a Next.js 15 application that delivers an AI-assisted financial planning experience. It features an enrollment journey, personalized insights, a learning hub, timeline tracking, and an always-on LifeLens support dock.
+AI-assisted benefits advisor built for the AWS/Lincoln Financial codeLinc hackathon.
 
-## Features
+**🏆 2nd Place - AWS/Lincoln Financial codeLinc 10**
 
-- **Dynamic quiz flow** with single-question cards, progress tracking, and hydration-safe persistence.
-- **Multi-screen app router experience** for landing, insights dashboard, timeline, learning hub, FAQ, and profile.
-- **Persistent local caching** of enrollment responses, insights, saved moments, chat history, and profile metadata with hydration-safe utilities.
-- **AI-inspired chat panel** that calls Next.js API routes for Claude-style replies with “thinking” states and context-aware prompts.
-- **Framer Motion transitions** across screens with Tailwind 4 styling, pastel theming, and glassmorphism accents.
-- **Support dock** and bottom navigation for quick access to primary workflows.
-- **Type-safe data models** for forms, insights, plans, chat, and profile snapshots.
-- **Server routes** for user persistence, plan generation, chat replies, and PDF report stubs (ready for Supabase/Bedrock wiring).
+[Devpost](https://devpost.com/software/finmate-gj93c8) | [Demo Video](https://drive.google.com/file/d/1hkhcIgm4Zcieez5crlFHQOdEZvJp7dqg/view?usp=sharing) | [Hackathon](https://codelinc10.devpost.com/)
 
-## Tech Stack
+## Overview
 
-- Next.js 15 with the App Router and TypeScript
-- Tailwind CSS 4 with custom design tokens
-- Framer Motion animations
-- ESLint & Prettier with import sorting
-- Vitest for unit tests
+FinMate helps early-career employees make better decisions around workplace benefits, savings, insurance, and retirement planning.
 
-## Getting Started
+The app guides users through a short onboarding flow, builds a benefits profile, and returns personalized recommendations, priority actions, timelines, and follow-up chat support. It was built as a hackathon prototype for making benefits selection feel less like reading a policy packet and more like getting a clear financial roadmap.
 
-1. Install dependencies:
+## My role
 
-   ```bash
-   npm install
-   ```
+This was a team project. My main contributions were:
 
-   > If installation fails in restricted environments, re-run once you have registry access. The project requires the dev dependencies listed in `package.json`.
+* Built the onboarding-to-insights flow that transformed user benefits inputs into structured profile data, recommendation outputs, timelines, and priority actions
+* Helped wire the prototype around AWS integration points, including Lambda/API Gateway flows, S3-style document upload handling, DynamoDB-ready persistence, and Bedrock-backed AI guidance
+* Connected frontend state and Next.js API routes for generated insights, chat support, report behavior, and upload workflows
+* Worked across the React/TypeScript product experience, including quiz, insights, timeline, learning, upload, and profile screens
+* Helped prepare the final demo, technical architecture explanation, and product framing for the AWS/Lincoln Financial judging panel
 
-2. Create a `.env.local` file (or copy `.env.local.example`) for any API keys.
+## Tech stack
 
-3. Start the development server:
+| Area      | Tools                                              |
+| --------- | -------------------------------------------------- |
+| Frontend  | Next.js, React, TypeScript                         |
+| Styling   | Tailwind CSS, Radix UI, lucide-react               |
+| Animation | Framer Motion                                      |
+| Forms     | React Hook Form, Zod                               |
+| Charts    | Recharts                                           |
+| Backend   | Next.js API routes, Node.js                        |
+| Cloud     | AWS Lambda, API Gateway, S3, DynamoDB              |
+| AI        | AWS Bedrock, Claude, AI chat routing               |
+| Data      | Browser local storage, prototype server-side store |
+| Testing   | Vitest                                             |
+| Tooling   | ESLint, Prettier, GitHub Actions                   |
 
-   ```bash
-   npm run dev
-   ```
+## Product flow
 
-4. Open [http://localhost:3000](http://localhost:3000) to view the app.
+```mermaid
+flowchart LR
+    User[User] --> Quiz[Benefits onboarding quiz]
+    Quiz --> Profile[Benefits profile]
+    Profile --> Insights[Personalized insights]
+    Insights --> Dashboard[Recommendations dashboard]
+    Dashboard --> Timeline[Action timeline]
+    Dashboard --> Chat[Follow-up chat]
+    Dashboard --> Upload[Document upload]
+```
 
-## Useful Scripts
+## System architecture
 
-| Script            | Description                                |
-| ----------------- | ------------------------------------------ |
-| `npm run dev`     | Start the development server               |
-| `npm run build`   | Build the production bundle                |
-| `npm run start`   | Run the production build                   |
-| `npm run lint`    | Run ESLint (Next.js rules)                 |
-| `npm run lint:fix`| Lint with automatic fixes                  |
-| `npm run typecheck` | Type-check the project with `tsc --noEmit` |
-| `npm run format`  | Check Prettier formatting                  |
-| `npm run format:write` | Format source files                   |
-| `npm run test`    | Execute Vitest unit tests                  |
+<img width="1679" height="759" alt="d13181ec-0a63-4973-aafd-c3cfdb6cc360 (1)" src="https://github.com/user-attachments/assets/265ff624-8a95-40db-a849-516e20765578" />
+The hackathon prototype used a Next.js product layer with AWS-ready integration points for document upload, storage, and AI guidance.
 
-## Testing
+## Key features
 
-Unit tests cover the insight builder, chat reply logic, and local storage helpers. Run them with:
+* Guided onboarding quiz for benefits, healthcare, savings, retirement, dependents, and risk preferences
+* Personalized recommendations based on the user’s profile and stated priorities
+* Priority guidance that turns benefits choices into specific next actions
+* Timeline view for planning enrollment and follow-up decisions
+* Visual insights dashboard for seeing how benefits choices affect financial allocation
+* AI chat support for follow-up benefits and financial planning questions
+* Document upload prototype for future benefits document analysis
+
+## Product screenshots
+
+### Landing Page
+<img width="1363" height="861" alt="Screenshot 2026-06-28 at 3 29 15 PM" src="https://github.com/user-attachments/assets/24bfc0eb-7103-4415-aab1-dc6f5348b013" />
+
+### Recommendations and Visual Insights
+
+<img width="1217" height="876" alt="Screenshot 2026-06-28 at 3 29 02 PM" src="https://github.com/user-attachments/assets/c028b652-8575-4117-bbd7-179537a98aca" />
+
+## How it works
+
+1. The user completes a short benefits onboarding flow.
+2. FinMate turns those answers into a structured financial and benefits profile.
+3. The app generates priority recommendations, plan guidance, and action timelines.
+4. The user can explore visual insights, ask follow-up questions, or upload documents.
+5. The prototype connects the product experience to backend routes and AWS-ready integration points.
+
+## Running locally
 
 ```bash
+git clone https://github.com/SujayCh07/finmate-ai-benefits-advisor.git
+cd finmate-ai-benefits-advisor/codelinc10
+npm install
+npm run dev -- -p 3002
+```
+
+Open:
+
+```text
+http://localhost:3002
+```
+
+Useful commands:
+
+```bash
+npm run build
+npm run lint
+npm run typecheck
 npm run test
 ```
 
-Vitest is configured with stubbed browser APIs so the tests execute in a Node environment.
+## Environment variables
 
-## Deployment
+The project supports optional integrations for AI, cloud upload, and future persistence. Do not commit real keys.
 
-- Vercel is recommended for zero-config deployments.
-- Configure required environment variables in the Vercel dashboard.
-- The CI workflow (`.github/workflows/ci.yml`) installs dependencies, runs linting, type-checks, and unit tests on pushes and pull requests.
+| Variable                        | Purpose                          |
+| ------------------------------- | -------------------------------- |
+| `AI_API_URL`                    | Optional external AI endpoint    |
+| `AI_API_KEY`                    | Optional external AI API key     |
+| `CLAUDE_API_KEY`                | Optional Claude fallback key     |
+| `CLAUDE_MODEL`                  | Optional Claude model override   |
+| `LAMBDA_UPLOAD_URL`             | Optional document upload backend |
+| `NEXT_PUBLIC_SUPABASE_URL`      | Optional Supabase placeholder    |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Optional Supabase placeholder    |
+| `AWS_ACCESS_KEY_ID`             | Optional AWS local testing key   |
+| `AWS_SECRET_ACCESS_KEY`         | Optional AWS local testing key   |
+| `AWS_REGION`                    | Optional AWS region              |
 
-## Environment Variables
+## What I would improve
 
-Copy `.env.local.example` to `.env.local` and supply keys for optional integrations such as Supabase or OpenAI.
+* Replace prototype local and in-memory storage with a production database layer
+* Add document retrieval over uploaded benefits material
+* Add stronger evaluation for recommendation quality and chat responses
+* Move all sensitive cloud and AI calls behind server-side routes
+* Add end-to-end tests for onboarding, insights, upload, and chat
+* Improve observability around API errors, latency, and failed AI responses
