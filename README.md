@@ -1,4 +1,4 @@
-# FinMate
+# FinMate - Sujay Chava
 
 AI-assisted benefits advisor built for the AWS/Lincoln Financial codeLinc hackathon.
 
