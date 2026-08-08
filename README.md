@@ -1,4 +1,5 @@
 # FinMate - Sujay Chava
+Personal engineering case study by Sujay Chava.
 
 AI-assisted benefits advisor built for the AWS/Lincoln Financial codeLinc hackathon.
 
